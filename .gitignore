@@ -1,0 +1,6 @@
+*.pyc
+bin/
+lib/
+share/
+include/
+.idea/workspace.xml
