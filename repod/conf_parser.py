@@ -5,16 +5,17 @@ off the server.
 from importlib import import_module
 import yaml
 from pyramid.config import Configurator
+from os.path import expanduser, join
 
 # Needed for import_module call
 # noinspection PyUnresolvedReferences
 import modules
 
-# Hardcoded, need to look up from users $HOME later
-file_loc = 'example_conf.yaml'
 
+def build_configuration(conf=None) -> Configurator:
+    if conf is None:
+        conf = join(expanduser('~'), '.repodrc')
 
-def build_configuration(conf=file_loc) -> Configurator:
     with open(conf) as conf_file:
         conf_dict = yaml.load(conf_file)
         server_conf = Configurator()
