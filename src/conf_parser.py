@@ -10,14 +10,16 @@ from pyramid.config import Configurator
 
 def build_configurator(podcasts: dict) -> Configurator:
     server_conf = Configurator()
-    for mountpoint, feed in podcasts:
+    for mountpoint, feed in podcasts.items():
         package, class_name = feed['class'].rsplit('.', 1)
         feed_package = import_module(package)
         feed_class = getattr(feed_package, class_name)
-        feed_instance = feed_class(**feed['args'])
+        feed_instance = feed_class(**feed)
 
         server_conf.add_route(mountpoint, '/' + mountpoint + '/')
         server_conf.add_view(feed_instance.view, route_name=mountpoint)
+
+    return server_conf
 
 
 def build_configuration_text(file_str: str) -> (dict, Configurator):

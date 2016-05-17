@@ -25,6 +25,17 @@ class BassdriveParser(HTMLParser):
         self.links = []
 
     def handle_starttag(self, tag, attrs):
+        """
+        If we find an 'a' tag, make sure that we record
+        the next link we come across
+
+        >>> b = BassdriveParser()
+        >>> b.handle_starttag('a', (('href', 'something.mp3'),))
+        >>> b.record_link_text
+        True
+        >>> b.link_url
+        'something.mp3'
+        """
         href = ''
         for attr, val in attrs:
             if attr == 'href':
@@ -35,6 +46,20 @@ class BassdriveParser(HTMLParser):
             self.link_url = href
 
     def handle_data(self, data):
+        """
+        If we receive a new link, record it if we're inside an `a` tag
+
+        >>> b = BassdriveParser()
+        >>> not b.get_links()
+        True
+        >>> b.handle_data("some_link")
+        >>> not b.get_links()
+        True
+        >>> b.handle_starttag('a', [['href', 'something.mp3']])
+        >>> b.handle_data("some text")
+        >>> len(b.get_links()) == 1
+        True
+        """
         if self.record_link_text:
             self.links.append((data, self.link_url))
             self.record_link_text = False
@@ -44,13 +69,27 @@ class BassdriveParser(HTMLParser):
         return self.links
 
     def clear_links(self):
+        """
+        For whatever reason, creating a new parser doesn't
+        clear out the old links.
+
+        >>> import requests
+        >>> b = BassdriveParser()
+        >>> b.feed(str(requests.get('http://archives.bassdrivearchive.com/' +\
+            '1%20-%20Monday/Subfactory%20Show%20-%20DJ%20Spim').content))
+        >>> len(b.get_links()) > 0
+        True
+        >>> b.clear_links()
+        >>> len(b.get_links()) == 0
+        True
+        """
         self.links = []
 
 
 class BassdriveFeed(BasePodcast):
     def __init__(self, *args, **kwargs):
         self.url = kwargs['url']
-        self.logo = kwargs['logo']
+        self.logo = kwargs.get('logo', '')
         # Get the title and DJ while handling trailing slash
         url_pretty = unquote(self.url)
         elems = filter(lambda x: x, url_pretty.split('/'))
@@ -90,5 +129,4 @@ class BassdriveFeed(BasePodcast):
             fe.pubdate(UTC.localize(published))
             fe.guid((link[0]))
 
-        parser.clear_links()
         return fg
