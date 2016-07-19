@@ -1,1 +1,1 @@
-web: python elektricity/server.py
+web: python elektricity/server.py --port $PORT
