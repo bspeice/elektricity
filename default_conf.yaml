@@ -1,0 +1,20 @@
+# Format (all args are passed to __init__ as kwargs:
+#
+# <mountpoint>:
+#   class: <feed_class>
+#   args:
+#     key: value
+
+subfactory-show:
+  package: bassdrive
+  class: BassdriveFeed
+  args:
+    url: http://archives.bassdrivearchive.com/1%20-%20Monday/Subfactory%20Show%20-%20DJ%20Spim/
+    logo: http://www.bassdrive.com/img/radio_schedule_entries/image/original/subfactory-web-add-56.jpg
+
+electronic-warfare:
+  package: bassdrive
+  class: BassdriveFeed
+  args:
+    url: http://archives.bassdrivearchive.com/6%20-%20Saturday/Electronic%20Warfare%20-%20The%20Overfiend/
+    logo: http://bassdrive.com/img/radio_schedule_entries/image/original/front-page-intro-box-200x200-115.jpg

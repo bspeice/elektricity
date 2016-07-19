@@ -1,6 +1,6 @@
 import argparse
 import traceback
-from os.path import expanduser, join
+from os.path import expanduser, join, dirname, realpath
 from wsgiref.simple_server import make_server
 
 from pyramid.config import Configurator
@@ -12,14 +12,15 @@ from conf_parser import build_configuration
 def start_server(server_conf: dict, configurator: Configurator) -> None:
     app = configurator.make_wsgi_app()
 
-    port = server_conf['port'] if 'port' in server_conf else cmd_args.port
-    host = server_conf['host'] if 'host' in server_conf else cmd_args.host
+    port = server_conf['port']
+    host = server_conf['host']
     server = make_server(host, port, app)
 
     server.serve_forever()
 
 if __name__ == '__main__':
-    default_rc = join(expanduser('~'), '.repodrc')
+    # default_rc = join(expanduser('~'), '.repodrc')
+    default_rc = join(dirname(realpath(__file__)), '../default_conf.yaml')
     parser = argparse.ArgumentParser()
     parser.add_argument('--verbose', action='store_true',
                         help='Run server in verbose mode')
@@ -32,7 +33,11 @@ if __name__ == '__main__':
 
     cmd_args = parser.parse_args()
     try:
-        server_conf, configurator = build_configuration(cmd_args.configuration)
+        configurator = build_configuration(cmd_args.configuration)
+        server_conf = {
+            'host': cmd_args.host,
+            'port': cmd_args.port
+        }
         start_server(server_conf, configurator)
     except FileNotFoundError:
         print("Unable to find configuration file. Does {} exist?"
@@ -42,10 +47,5 @@ if __name__ == '__main__':
     except AttributeError:
         print("Unable to parse configuration file. Is {} a valid YML file?"
               .format(cmd_args.configuration))
-        if cmd_args.verbose:
-            print(traceback.format_exc())
-    except KeyError:
-        print('Unable to parse configuration file. Is there a `podcasts` '
-              'section?')
         if cmd_args.verbose:
             print(traceback.format_exc())
