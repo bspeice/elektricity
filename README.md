@@ -4,6 +4,10 @@ A server designed to make it easy to re-broadcast existing content
 as a podcast. Named after [London Elektricity][1] who, among other
 things, hosts the [Hospital Podcast][2].
 
+Elektricity is also ready to run on Heroku, and that's actually
+how I'm using it at the moment. For example, the web page [here][3]
+looks like [this][4] when running with Elektricity.
+
 ---
 
 The purpose of Elektricity is to take content that exists on the web already,
@@ -18,8 +22,7 @@ content ourselves, but tell people where to get the content at.
 
 Future ideas: Turn your mixcloud feed into a podcast?
 
-Repod is currently very bare-bones, but the Requirements file should
-be enough to get up and running.
-
 [1]: https://www.youtube.com/watch?v=6IRiuLy0IW4
 [2]: https://www.hospitalrecords.com/podcast/
+[3]: http://archives.bassdrivearchive.com/1%20-%20Monday/Subfactory%20Show%20-%20DJ%20Spim/
+[4]: https://elektricity.herokuapp.com/subfactory-show/
