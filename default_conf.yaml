@@ -18,3 +18,10 @@ electronic-warfare:
   args:
     url: http://archives.bassdrivearchive.com/6%20-%20Saturday/Electronic%20Warfare%20-%20The%20Overfiend/
     logo: http://bassdrive.com/img/radio_schedule_entries/image/original/front-page-intro-box-200x200-115.jpg
+
+rinse-n-wash:
+  package: bassdrive
+  class: BassdriveFeed
+  args:
+    url: http://archives.bassdrivearchive.com/1%20-%20Monday/Rinse%20N%20Wash%20-%20Wadjit/
+    logo: http://bassdrive.com/img/radio_schedule_entries/image/original/rinse-n-wash-wadjit_web-square-63.jpg
