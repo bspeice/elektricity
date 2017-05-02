@@ -25,3 +25,10 @@ rinse-n-wash:
   args:
     url: http://archives.bassdrivearchive.com/1%20-%20Monday/Rinse%20N%20Wash%20-%20Wadjit/
     logo: http://bassdrive.com/img/radio_schedule_entries/image/original/rinse-n-wash-wadjit_web-square-63.jpg
+
+incisive-rhythm:
+  package: bassdrive
+  class: BassdriveFeed
+  args:
+    url: http://archives.bassdrivearchive.com/7%20-%20Sunday/Incisive%20Rhythm%20-%20Ronin%20Selecta/
+    logo: http://bassdrive.com/img/radio_schedule_entries/image/original/ronin-selecta-1800-x-1800-113.png
