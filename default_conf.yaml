@@ -32,3 +32,10 @@ incisive-rhythm:
   args:
     url: http://archives.bassdrivearchive.com/7%20-%20Sunday/Incisive%20Rhythm%20-%20Ronin%20Selecta/
     logo: http://bassdrive.com/img/radio_schedule_entries/image/original/ronin-selecta-1800-x-1800-113.png
+
+location-six-one-oh:
+  package: bassdrive
+  class: BassdriveFeed
+  args:
+    url: http://archives.bassdrivearchive.com/5%20-%20Friday/Location%20SixOneOh%20-%20Reflect/
+    logo: http://bassdrive.com/img/radio_schedule_entries/image/original/reflect-show-flyer-92.jpg
