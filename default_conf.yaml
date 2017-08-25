@@ -39,3 +39,10 @@ location-six-one-oh:
   args:
     url: http://archives.bassdrivearchive.com/5%20-%20Friday/Location%20SixOneOh%20-%20Reflect/
     logo: http://bassdrive.com/img/radio_schedule_entries/image/original/reflect-show-flyer-92.jpg
+
+strictly-science:
+  package: bassdrive
+  class: BassdriveFeed
+  args:
+    url: http://archives.bassdrivearchive.com/3%20-%20Wednesday/The%20Strictly%20Science%20Mixshow%20-%20Dlo/
+    logo: http://bassdrive.com/img/radio_schedule_entries/image/original/dlo_strictly_science_bassdrive_logo_image-76.jpg
